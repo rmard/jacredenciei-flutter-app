@@ -50,9 +50,6 @@ class _MyOrdersState extends State<MyOrders> {
     } else {
       var ped = orders['pedidos'];
       print(ped);
-//      var pp = (orders['pedidos']).map((p) {
-//        return Text(p['dt_pgto']);
-//      }).toList();
       List<Widget> list = [];
       for (var i = 0; i < ped.length; i++) {
         list.add(cardPedido(ped[i]));
@@ -60,8 +57,6 @@ class _MyOrdersState extends State<MyOrders> {
       return ListView(
         children: list,
       );
-      print(orders['pedidos']);
-      return Text('ok');
     }
     return ret;
   }

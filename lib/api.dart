@@ -31,6 +31,19 @@ class API {
     }
   }
 
+  static Future getMyVouchers() async {
+    Response response;
+    Dio dio = new Dio();
+    dio.options = BaseOptions(followRedirects: false);
+    dio.interceptors.add(CookieManager(CookieJar()));
+    try{
+      response = await dio.get(baseUrl + "/vouchers/recebidos.json");
+      return response;
+    } catch(e) {
+      throw new Exception("LOGINREQUIRED");
+    }
+  }
+
   static Future login(user, pass) async {
     Future<Response> response;
     Dio dio = new Dio();

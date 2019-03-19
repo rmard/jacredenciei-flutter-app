@@ -19,7 +19,7 @@ class MyDrawer extends StatelessWidget{
                 Padding(padding: EdgeInsets.all(10),),
                 Image.asset('assets/logosplash.png'),
                 Padding(padding: EdgeInsets.all(10),),
-                Text('VERSÃO 0.20190314', style: TextStyle(color: Colors.indigo[300], fontSize: 12),),
+                Text('VERSÃO 0.20190319', style: TextStyle(color: Colors.indigo[300], fontSize: 12),),
 
               ],
             ),
@@ -37,6 +37,12 @@ class MyDrawer extends StatelessWidget{
             title: Text('Meus pedidos'),
             onTap: () {
               Navigator.pushNamedAndRemoveUntil(context, '/pedidos', (_)=>false);
+            },
+          ),
+          ListTile(
+            title: Text('Meus vouchers'),
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(context, '/vouchers/recebidos', (_)=>false);
             },
           ),
         ],

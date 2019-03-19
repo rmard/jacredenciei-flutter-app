@@ -3,6 +3,7 @@ import 'package:splashscreen/splashscreen.dart';
 
 import './pages/home.dart';
 import './pages/my_orders.dart';
+import './pages/my_vouchers.dart';
 
 void main() => runApp(MyApp());
 
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(title: 'JáCredenciei'),
         '/splash': (context) => MySplash(),
         '/pedidos': (context) => MyOrders(),
+        '/vouchers/recebidos': (context) => MyVouchers(),
       },
     );
   }

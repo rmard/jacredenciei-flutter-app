@@ -23,7 +23,7 @@ class _Login extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final emailController = TextEditingController();
-    emailController.text = 'rmardn@gmail.com';
+    //emailController.text = 'rmardn@gmail.com';
     final passwordController = TextEditingController();
     final passwordFocusNode = FocusNode();
 
