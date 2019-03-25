@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../my_drawer.dart';
 import '../api.dart';
 import './login.dart';
+import './send_voucher.dart';
 
 class MyVouchers extends StatefulWidget {
   @override
@@ -44,9 +45,7 @@ class _MyVouchers extends State<MyVouchers> {
   Widget _body() {
     var ret;
     if (vouchers == null) {
-      ret = Center(
-        child: Text('Carregando...'),
-      );
+      ret = new LinearProgressIndicator();
     } else {
       var v = vouchers['vouchers'];
       print(v);
@@ -129,14 +128,7 @@ class _MyVouchers extends State<MyVouchers> {
                           child: Text('ENVIAR PARA CONVIDADO',
                             style: TextStyle(color: Colors.amber[900]),),
                           onPressed: () {
-                            showDialog(builder: (context) {
-                              return AlertDialog(
-                                  title: Text('Em desenvolvimento'),
-                                  content: Text(
-                                      'Funcionalidade ainda não implementada'));
-                            }, context: context
-
-                            );
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>(new SendVoucher(v))));
                           },
                         )
                     ),

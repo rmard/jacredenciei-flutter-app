@@ -19,21 +19,20 @@ class HomePage extends StatefulWidget {
 
   final String title;
 
-
   @override
   _MyHomePageState createState() {
     return _MyHomePageState();
   }
-
 }
 
 class _MyHomePageState extends State<HomePage> {
   var sales = [];
-
+  var loading = true;
 
   _getSales() {
     API.getOpenedSales().then((response) {
       setState(() {
+        loading = false;
         //print(response.body);
         Map<String, dynamic> list = json.decode(response.body);
 //        print('List: ');
@@ -57,7 +56,6 @@ class _MyHomePageState extends State<HomePage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -71,18 +69,18 @@ class _MyHomePageState extends State<HomePage> {
           title: Text(widget.title),
         ),
         drawer: MyDrawer(),
-        body:  Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: ListView (
-
-            children: <Widget>[
-              Column(
-                children: sales.map((sale) => (CardEvent(sale))).toList(),
-              )
-            ],
-          ),
-        )
-        );
+        body: loading
+            ? new LinearProgressIndicator()
+            : Center(
+                // Center is a layout widget. It takes a single child and positions it
+                // in the middle of the parent.
+                child: ListView(
+                  children: <Widget>[
+                    Column(
+                      children: sales.map((sale) => (CardEvent(sale))).toList(),
+                    )
+                  ],
+                ),
+              ));
   }
 }

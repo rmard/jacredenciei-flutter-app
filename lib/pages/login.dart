@@ -14,6 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
+  var loading = false;
   // Create a global key that will uniquely identify the Form widget and allow
   // us to validate the form
   //
@@ -36,15 +37,21 @@ class _Login extends State<Login> {
     }
 
     void _submit(context) {
+
       print(passwordController.text);
       // Validate will return true if the form is valid, or false if
       // the form is invalid.
       if (_formKey.currentState.validate()) {
+        setState(() {
+          loading = true;
+        });
         // If the form is valid, we want to show a Snackbar
 //        Scaffold.of(context).showSnackBar(
 //            SnackBar(content: Text('Login ainda será implementado...')));
         API.login(emailController.text, passwordController.text).then((response){
-          //print(response);
+          setState(() {
+            loading = false;
+          });
 
           if(response.data['usuario']==false) {
             Scaffold.of(context).showSnackBar(
@@ -68,6 +75,8 @@ class _Login extends State<Login> {
 //            Scaffold.of(context).showSnackBar(
 //                SnackBar(content: Text('Efetue login para prosseguir!')));
 //          });
+        if(loading)
+           return new LinearProgressIndicator();
           return Form(
             key: _formKey,
             child: Padding(

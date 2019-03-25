@@ -44,9 +44,7 @@ class _MyOrdersState extends State<MyOrders> {
   Widget _body() {
     var ret;
     if (orders == null) {
-      ret = Center(
-        child: Text('Carregando...'),
-      );
+      ret = new LinearProgressIndicator();
     } else {
       var ped = orders['pedidos'];
       print(ped);
